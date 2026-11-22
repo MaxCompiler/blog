@@ -11,6 +11,7 @@
     <p>{{$post->contenido}} </p>
     <small>{{$post->created_at}} </small>
     
+    <a href="{{ route('posts.edit', $post->id) }}">Editar</a>
     <hr>
     <a href="{{route('posts.index')}}">Volver a las notas</a>
 </body>

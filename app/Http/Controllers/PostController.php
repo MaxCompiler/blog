@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     public function index(){
         $posts = DB::select('SELECT id, titulo , contenido, created_at FROM posts ORDER BY id DESC');
@@ -38,5 +38,26 @@ class PostsController extends Controller
         
         return redirect()->route('posts.index')->with('exito', 'Nota creada correctamente.');
 
+    }
+    public function edit($id){
+        $resultado = DB::select('SELECT id , titulo , contenido FROM posts WHERE id = ?', [$id]);
+
+        if(empty($resultado)){
+            abort(404);
+        }
+
+        return view('posts.edit', ['post'=> $resultado[0]]);
+    }
+
+    public function update(Request $request, $id){
+        $datos = $request->validate([
+            'titulo'=> 'required|string|max:255',
+            'contenido'=> 'required|string'
+        ]);
+
+        $fila = DB::update('UPDATE posts SET titulo = ? , contenido = ?, updated_at = GETDATE() where id = ?',
+        [$datos['titulo'], $datos['contenido'], $id]);
+
+        return redirect()->route('posts.show', $id)->with('exito', 'Nota actualizada correctamente.');
     }
 }
