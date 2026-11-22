@@ -60,4 +60,10 @@ class PostController extends Controller
 
         return redirect()->route('posts.show', $id)->with('exito', 'Nota actualizada correctamente.');
     }
+
+    public function destrory($id){
+        DB::delete('delete posts where id = ?', [$id]);
+
+        return redirect()->route('posts.index')->with('exito', 'Nota eliminada correctamente.');
+    }
 }
