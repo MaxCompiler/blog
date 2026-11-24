@@ -15,7 +15,7 @@
 
         <div>
             <label for="titulo">Titulo</label>
-            <input type="text" id="titulo" name="titulo" value="{{old('titulo', $post->titulo)}}">
+            <input type="text" id="titulo" name="title" value="{{old('title', $post->titulo)}}">
             @error('titulo')
                 <p style="color: red;">{{ $message }}</p>
             @enderror
@@ -23,7 +23,7 @@
 
         <div>
             <label for="contenido">Contenido</label><br>
-            <textarea name="contenido" id="contenido" rows="6">{{old('contenido', $post->contenido)}} </textarea>
+            <textarea name="content" id="contenido" rows="6">{{old('content', $post->contenido)}} </textarea>
         </div>
 
         <button type="submit" >Actualizar</button>

@@ -12,16 +12,16 @@
         @csrf
         <div>
             <label for="titulo">Titulo: </label>
-            <input type="text" id="titulo" name="titulo" value="{{old('titulo')}}">
-            @error('titulo')
+            <input type="text" id="titulo" name="title" value="{{old('title')}}">
+            @error('title')
                 <p style="color:red">{{$message}} </p>
             @enderror
         </div>
 
         <div>
             <label for="contenido">Contenido: </label><br>
-            <textarea name="contenido" id="contenido" rows="6">{{old('contenido')}} </textarea>
-            @error('contenido')
+            <textarea name="content" id="contenido" rows="6">{{old('content')}} </textarea>
+            @error('content')
                 <p style="color: red">{{$message}} </p>
             @enderror
         </div>

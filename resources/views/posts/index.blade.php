@@ -17,9 +17,9 @@
     @forelse ($posts as $post)
         <article>
             <h2>
-                <a href="{{route('posts.show' , $post->id)}}">{{$post->titulo}} </a>
+                <a href="{{route('posts.show' , $post->id)}}">{{$post->title}} </a>
             </h2>
-            <p>{{$post->contenido}} </p>
+            <p>{{$post->content}} </p>
             <small>{{$post->created_at}} </small>
         </article>
     @empty
