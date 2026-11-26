@@ -9,9 +9,28 @@
 <body>
     <h1>Mis Notas</h1>
 
-    <a href="{{route('posts.create')}}"> +Crear Nota</a>
+    @auth
+        <p>Hola , {{ auth()->user()->name }} </p>
+        <a href="{{route('posts.create')}}"> +Crear Nota</a>
+
+        <form action="{{route('logout')}}" method="post" style="display:inline;">
+            @csrf
+            <button type="submit">Cerrar sesion</button>
+        </form>
+    @endauth
+
+    @guest
+        <a href="{{route('login')}}">Iniciar sesion</a>
+        <a href="{{route('register')}}">Registrarse</a>
+    @endguest
+
+    
     @if (session('exito'))
         <p style="color: green">{{session('exito')}} </p>
+    @endif
+
+    @if (session('error'))
+        <p style="color:red">{{session('error')}} </p>
     @endif
 
     @forelse ($posts as $post)
